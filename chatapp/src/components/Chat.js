@@ -1,25 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-    View,
-    Text,
-} from 'react-native';
+import { GiftedChat } from 'react-native-gifted-chat';
 
 class Chat extends React.Component {
 
+    state = {
+        messages : []
+    }
+
     constructor (props) {
         super (props);
-        console.log (this.props.chatname);
     }
 
     render () {
         return (
-            <View>
-                <Text>
-                    Hello { this.props.chatname }
-                </Text>
-            </View>
+            <GiftedChat
+                messages = { this.state.messages }
+                onSend   = { (message) => {
+                    // send message to your backend
+                    console.log (message);
+                }}
+                user     = {
+                    {
+                        _id  : 1,
+                        name : this.props.name
+                    }
+                }
+            />
         );
     }
 }
